@@ -4,11 +4,12 @@ An intelligent web content summarization tool that extracts and condenses webpag
 
 ## 📋 Overview
 
-This Jupyter notebook creates concise, structured summaries of web content by leveraging state-of-the-art language models and robust web scraping techniques. Perfect for quickly understanding lengthy articles, blog posts, or documentation.
+This Jupyter notebook creates concise, structured summaries of web content by leveraging state-of-the-art language models and robust web scraping techniques. The tool supports both cloud-based and local AI models, including OpenAI's GPT-4o-mini and the open-source GPT-OSS:20B model through Ollama, providing flexibility for different deployment scenarios. Perfect for quickly understanding lengthy articles, blog posts, or documentation.
 
 ## ✨ Key Features
 
-- **🤖 AI-Powered Summarization**: Uses OpenAI's `gpt-4o-mini` for high-quality text summarization
+- **🤖 Dual AI Models**: Powered by OpenAI's `gpt-4o-mini` and open-source `gpt-oss:20b` through Ollama for high-quality text summarization
+- **🔓 Local & Cloud Options**: Choose between cloud-based OpenAI models or run models locally with Ollama
 - **🕷️ Dual Web Scraping Approaches**: 
   - Selenium WebDriver for dynamic JavaScript-rendered content
   - Requests + BeautifulSoup for faster static content extraction
@@ -20,10 +21,12 @@ This Jupyter notebook creates concise, structured summaries of web content by le
 
 | Component | Technology | Purpose |
 |-----------|------------|---------|
-| **AI Model** | OpenAI GPT-4o-mini | Content summarization |
+| **AI Models** | OpenAI GPT-4o-mini, GPT-OSS:20B | Content summarization |
 | **Web Scraping** | Selenium WebDriver | Dynamic content extraction |
 | **HTML Parsing** | BeautifulSoup | Static content processing |
 | **HTTP Client** | Python Requests | Fast web requests |
+| **AI Integration** | OpenAI API, Ollama | Model access and inference |
+| **Local AI Runtime** | Ollama | Local model execution |
 | **Environment** | Jupyter Notebook | Interactive development |
 
 ## 🚀 Quick Start
@@ -31,8 +34,9 @@ This Jupyter notebook creates concise, structured summaries of web content by le
 ### Prerequisites
 
 1. **Python Environment**: Python 3.8+ with Jupyter Lab
-2. **API Keys**: OpenAI API key for summarization
+2. **API Keys**: OpenAI API key for cloud-based summarization (optional if using only Ollama)
 3. **Chrome Browser**: Required for Selenium WebDriver
+4. **Ollama** (Optional): For local model execution
 
 ### Installation
 
@@ -43,6 +47,19 @@ pip install selenium beautifulsoup4 webdriver-manager openai python-dotenv
 # Or use uv (if available)
 uv pip install selenium beautifulsoup4 webdriver-manager openai python-dotenv
 ```
+
+#### Ollama Setup (for local models)
+To use the GPT-OSS:20B model locally:
+
+1. **Install Ollama**: Visit [ollama.com](https://ollama.com) and download for your platform
+2. **Pull the model**:
+   ```bash
+   ollama pull gpt-oss:20b
+   ```
+3. **Start Ollama service**: The service should start automatically, or run:
+   ```bash
+   ollama serve
+   ```
 
 ### Environment Setup
 
@@ -59,8 +76,11 @@ jupyter lab webpage_summarizer.ipynb
 ### Basic Usage
 
 ```python
-# Simple summarization
-summarize("https://en.wikipedia.org/wiki/Marie_Curie")
+# Using OpenAI model
+summarize("https://en.wikipedia.org/wiki/Marie_Curie", open_ai_llm_client)
+
+# Using local Ollama model
+summarize("https://en.wikipedia.org/wiki/Marie_Curie", gpt_oss_llm_client)
 ```
 
 ## 📚 How It Works
@@ -85,9 +105,10 @@ Both crawlers intelligently extract main content by:
 - Falling back to body content if no main containers found
 
 ### 3. AI Summarization
-- Uses OpenAI's GPT-4o-mini model
+- Supports both OpenAI's GPT-4o-mini and local GPT-OSS:20B models
 - Structured prompts for consistent output
 - Returns markdown-formatted summaries
+- Choose between cloud-based or local processing
 
 ## 🔧 Configuration
 
@@ -100,8 +121,17 @@ crawler = WebUrlCrawler(
 ```
 
 ### Model Configuration
+
+**OpenAI Model**
 ```python
-MODEL_OPENAI = "gpt-4o-mini"  # Can be changed to other OpenAI models
+model_open_ai = "gpt-4o-mini"
+open_ai_llm_client = LLMClient(model=model_open_ai)
+```
+
+**Local Ollama Model**
+```python
+model_gpt_oss = "gpt-oss:20b"
+gpt_oss_llm_client = LLMClient(model=model_gpt_oss)
 ```
 
 ## 📁 Project Structure
@@ -120,13 +150,15 @@ notebooks/01_webpage_summarizer/
 - **📖 Documentation**: Condense technical guides
 - **💼 Business Reports**: Extract actionable insights
 - **🎓 Educational Content**: Study aid for academic materials
+- **🔒 Private Content**: Use local Ollama models for sensitive information
 
 ## 🚧 Limitations
 
-- Requires stable internet connection
-- OpenAI API usage incurs costs
+- Requires stable internet connection for web scraping
+- OpenAI API usage incurs costs (Ollama is free for local use)
 - Some websites may block automated scraping
 - JavaScript-heavy sites may require the Selenium approach
+- Local models (Ollama) require sufficient system resources
 
 ## 🤝 Contributing
 
