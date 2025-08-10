@@ -25,7 +25,6 @@ An intelligent web content summarization tool that extracts and condenses webpag
 - Dual AI model support (OpenAI + local Ollama models)
 - Advanced web scraping (Selenium + BeautifulSoup)
 - Smart content extraction and filtering
-- Markdown-formatted output
 
 **Use Cases:** News summarization, research paper analysis, documentation condensing
 
@@ -67,7 +66,25 @@ Interactive AI-powered Spanish language learning companion with conversational c
 
 ---
 
-### 4. 🌐 FastAPI Web Service
+### 4. 🌤️ Adventure Weather Assistant
+**`notebooks/04_adventure_weather_assistant/`**
+
+An intelligent activity planning assistant that combines real-time weather data with local event information to suggest personalized outdoor and indoor activities.
+
+**Key Features:**
+- AI-powered conversational planning with weather awareness
+- Real-time weather forecasting and multi-day predictions
+- Live event discovery from TicketMaster and Google Places
+- Advanced function calling with error recovery
+- Interactive web interface with Gradio
+
+**Use Cases:** Trip planning, activity discovery, weather-aware recommendations, local event exploration
+
+[📖 Full Documentation](./notebooks/04_adventure_weather_assistant/README.md)
+
+---
+
+### 5. 🌐 FastAPI Web Service
 **`main.py`**
 
 A foundational REST API built with FastAPI demonstrating modern Python web development patterns.
@@ -157,8 +174,11 @@ llm_portfolio/
     ├── 02_brochure_generator/
     │   ├── brochure_generator.ipynb     # Company brochure generation
     │   └── README.md                    # Project documentation
-    └── 03_spanish_tutor/
-        ├── spanish_tutor.ipynb          # Interactive language tutor
+    ├── 03_spanish_tutor/
+    │   ├── spanish_tutor.ipynb          # Interactive language tutor
+    │   └── README.md                    # Project documentation
+    └── 04_adventure_weather_assistant/
+        ├── adventure_weather_assistant.ipynb  # Weather-aware activity planning
         └── README.md                    # Project documentation
 ```
 
