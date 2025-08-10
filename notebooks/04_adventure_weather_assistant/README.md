@@ -63,7 +63,7 @@ The Adventure Weather Agent is a conversational AI system that helps users disco
 
 ```bash
 git clone <repository-url>
-cd llm_portfolio/notebooks/04_adventure_weather_agent
+cd llm_portfolio/notebooks/04_adventure_weather_assistant
 ```
 
 ### 2. Install Dependencies
@@ -86,7 +86,7 @@ GOOGLE_PLACES_API_KEY=your_google_places_api_key_here
 ### 4. Run the Application
 
 ```bash
-jupyter lab adventure_weather_agent.ipynb
+jupyter lab adventure_weather_assistant.ipynb
 ```
 
 Then execute all cells to launch the Gradio interface.
