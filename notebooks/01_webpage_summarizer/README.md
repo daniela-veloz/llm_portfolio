@@ -1,176 +1,79 @@
+---
+title: WebPage Summarizer
+emoji: 🌐
+colorFrom: blue
+colorTo: green
+sdk: gradio
+sdk_version: 4.44.0
+app_file: app.py
+pinned: false
+license: mit
+---
+
 # 🌐 WebPage Summarizer
 
 An intelligent web content summarization tool that extracts and condenses webpage information using advanced AI models.
 
 ## 📋 Overview
 
-This Jupyter notebook creates concise, structured summaries of web content by leveraging state-of-the-art language models and robust web scraping techniques. The tool supports both cloud-based and local AI models, including OpenAI's GPT-4o-mini and the open-source GPT-OSS:20B model through Ollama, providing flexibility for different deployment scenarios. Perfect for quickly understanding lengthy articles, blog posts, or documentation.
+This application creates concise, structured summaries of web content by leveraging state-of-the-art language models and robust web scraping techniques. Perfect for quickly understanding lengthy articles, blog posts, or documentation.
 
 ## ✨ Key Features
 
-- **🤖 Dual AI Models**: Powered by OpenAI's `gpt-4o-mini` and open-source `gpt-oss:20b` through Ollama for high-quality text summarization
-- **🔓 Local & Cloud Options**: Choose between cloud-based OpenAI models or run models locally with Ollama
-- **🕷️ Dual Web Scraping Approaches**: 
-  - Selenium WebDriver for dynamic JavaScript-rendered content
-  - Requests + BeautifulSoup for faster static content extraction
-- **🎯 Smart Content Extraction**: Intelligently identifies main content areas while filtering out navigation, ads, and other irrelevant elements
-- **📝 Markdown Output**: Generates clean, formatted summaries in Markdown for easy reading and sharing
-- **⚡ Flexible Architecture**: Choose between comprehensive Selenium scraping or lightweight HTTP requests
+- **🤖 Dual AI Models**: Powered by OpenAI's `gpt-4o-mini` and open-source `gpt-oss:20b` through Ollama
+- **🕷️ Advanced Web Scraping**: Uses BeautifulSoup to handle static websites efficiently
+- **📝 Markdown Output**: Generates clean, formatted summaries in Markdown
+- **🎯 Focused Processing**: Efficiently processes individual webpage URLs
+- **🚀 Easy Interface**: Simple Gradio web interface for immediate use
 
 ## 🛠️ Technology Stack
 
-| Component | Technology | Purpose |
-|-----------|------------|---------|
-| **AI Models** | OpenAI GPT-4o-mini, GPT-OSS:20B | Content summarization |
-| **Web Scraping** | Selenium WebDriver | Dynamic content extraction |
-| **HTML Parsing** | BeautifulSoup | Static content processing |
-| **HTTP Client** | Python Requests | Fast web requests |
-| **AI Integration** | OpenAI API, Ollama | Model access and inference |
-| **Local AI Runtime** | Ollama | Local model execution |
-| **Environment** | Jupyter Notebook | Interactive development |
+- **AI Models**: OpenAI GPT-4o-mini, GPT-OSS:20B (local)
+- **Web Scraping**: BeautifulSoup, Python Requests  
+- **Interface**: Gradio
+- **AI Integration**: OpenAI API, Ollama (for local models)
 
-## 🚀 Quick Start
+## 🚀 Usage
 
-### Prerequisites
+1. **Enter URL**: Paste the webpage URL you want to summarize
+2. **Choose Model**: Select between OpenAI GPT-4o-mini or local GPT-OSS:20b
+3. **Get Summary**: Click "Summarize" to receive an intelligent markdown summary
 
-1. **Python Environment**: Python 3.8+ with Jupyter Lab
-2. **API Keys**: OpenAI API key for cloud-based summarization (optional if using only Ollama)
-3. **Chrome Browser**: Required for Selenium WebDriver
-4. **Ollama** (Optional): For local model execution
+## 🎯 Perfect For
 
-### Installation
+- **📰 News Articles**: Quickly digest lengthy news content
+- **📚 Research Papers**: Extract key points from academic materials
+- **📖 Documentation**: Summarize technical documentation
+- **💼 Business Reports**: Extract insights from corporate content
 
+## 🔧 Setup Requirements
+
+### For OpenAI Models
+Set your OpenAI API key as an environment variable:
 ```bash
-# Install required packages
-pip install selenium beautifulsoup4 webdriver-manager openai python-dotenv
-
-# Or use uv (if available)
-uv pip install selenium beautifulsoup4 webdriver-manager openai python-dotenv
+export OPENAI_API_KEY="your-api-key-here"
 ```
 
-#### Ollama Setup (for local models)
-To use the GPT-OSS:20B model locally:
+### For Local GPT-OSS Models
+1. Install [Ollama](https://ollama.com)
+2. Pull the model: `ollama pull gpt-oss:20b`
+3. Start Ollama service: `ollama serve`
 
-1. **Install Ollama**: Visit [ollama.com](https://ollama.com) and download for your platform
-2. **Pull the model**:
-   ```bash
-   ollama pull gpt-oss:20b
-   ```
-3. **Start Ollama service**: The service should start automatically, or run:
-   ```bash
-   ollama serve
-   ```
+## 📝 Examples
 
-### Environment Setup
+Try these sample URLs:
+- https://en.wikipedia.org/wiki/Marie_Curie
+- https://en.wikipedia.org/wiki/Artificial_intelligence
 
-1. Create a `.env` file in your project directory:
-```env
-OPENAI_API_KEY=your_openai_api_key_here
-```
+## 💡 Tips
 
-2. Open the notebook:
-```bash
-jupyter lab webpage_summarizer.ipynb
-```
-
-### Basic Usage
-
-```python
-# Using OpenAI model
-summarize("https://en.wikipedia.org/wiki/Marie_Curie", open_ai_llm_client)
-
-# Using local Ollama model
-summarize("https://en.wikipedia.org/wiki/Marie_Curie", gpt_oss_llm_client)
-```
-
-## 📚 How It Works
-
-### 1. Web Content Extraction
-Two scraping approaches available:
-
-**Selenium WebUrlCrawler (Dynamic Content)**
-- Handles JavaScript-rendered pages
-- Waits for content to load
-- More resource-intensive but comprehensive
-
-**Requests WebUrlCrawler (Static Content)**
-- Fast HTTP requests
-- Lightweight and efficient
-- Perfect for static HTML pages
-
-### 2. Content Filtering
-Both crawlers intelligently extract main content by:
-- Removing unwanted elements: `script`, `style`, `img`, `input`, `button`, `nav`, `footer`, `header`
-- Prioritizing main content containers: `main`, `article`, `[role="main"]`, `.content`, etc.
-- Falling back to body content if no main containers found
-
-### 3. AI Summarization
-- Supports both OpenAI's GPT-4o-mini and local GPT-OSS:20B models
-- Structured prompts for consistent output
-- Returns markdown-formatted summaries
-- Choose between cloud-based or local processing
-
-## 🔧 Configuration
-
-### WebUrlCrawler Options
-```python
-crawler = WebUrlCrawler(
-    headless=True,    # Run browser in background
-    timeout=10        # Page load timeout in seconds
-)
-```
-
-### Model Configuration
-
-**OpenAI Model**
-```python
-model_open_ai = "gpt-4o-mini"
-open_ai_llm_client = LLMClient(model=model_open_ai)
-```
-
-**Local Ollama Model**
-```python
-model_gpt_oss = "gpt-oss:20b"
-gpt_oss_llm_client = LLMClient(model=model_gpt_oss)
-```
-
-## 📁 Project Structure
-
-```
-notebooks/01_webpage_summarizer/
-├── webpage_summarizer.ipynb    # Main notebook
-├── README.md                   # This file
-└── .env                        # Environment variables (create this)
-```
-
-## 🎯 Use Cases
-
-- **📰 News Articles**: Quick summaries of current events
-- **📚 Research Papers**: Extract key findings and methodology
-- **📖 Documentation**: Condense technical guides
-- **💼 Business Reports**: Extract actionable insights
-- **🎓 Educational Content**: Study aid for academic materials
-- **🔒 Private Content**: Use local Ollama models for sensitive information
-
-## 🚧 Limitations
-
-- Requires stable internet connection for web scraping
-- OpenAI API usage incurs costs (Ollama is free for local use)
-- Some websites may block automated scraping
-- JavaScript-heavy sites may require the Selenium approach
-- Local models (Ollama) require sufficient system resources
-
-## 🤝 Contributing
-
-This is part of a larger LLM portfolio project. Feel free to:
-- Suggest improvements to content extraction
-- Add support for additional AI models
-- Enhance error handling and robustness
-
-## 📄 License
-
-Part of the LLM Portfolio project. See main repository for license details.
+- Works best with content-rich pages (articles, blogs, documentation)
+- Local models require Ollama running on your system
+- Summaries include TL;DR sections for quick insights
 
 ---
 
-*Perfect for developers learning web scraping, AI integration, and content processing pipelines.*
+**🚀 [Try it live on Hugging Face Spaces!](https://huggingface.co/spaces/daniela-veloz/webpage-summarizer)**
+
+
+
