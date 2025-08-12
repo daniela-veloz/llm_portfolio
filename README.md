@@ -28,7 +28,7 @@ An intelligent web content summarization tool that extracts and condenses webpag
 
 **Use Cases:** News summarization, research paper analysis, documentation condensing
 
-[📖 Full Documentation](./notebooks/01_webpage_summarizer/README.md)
+[📖 Full Documentation](projects/01_webpage_summarizer/README.md)
 
 ---
 
@@ -45,7 +45,7 @@ AI-powered tool that automatically creates professional company brochures by ana
 
 **Use Cases:** Marketing automation, sales enablement, competitive analysis
 
-[📖 Full Documentation](./notebooks/02_brochure_generator/README.md)
+[📖 Full Documentation](projects/02_brochure_generator/README.md)
 
 ---
 
@@ -62,7 +62,7 @@ Interactive AI-powered Spanish language learning companion with conversational c
 
 **Use Cases:** Language learning, pronunciation practice, educational supplements
 
-[📖 Full Documentation](./notebooks/03_spanish_tutor/README.md)
+[📖 Full Documentation](projects/03_spanish_tutor/README.md)
 
 ---
 
@@ -80,7 +80,7 @@ An intelligent activity planning assistant that combines real-time weather data 
 
 **Use Cases:** Trip planning, activity discovery, weather-aware recommendations, local event exploration
 
-[📖 Full Documentation](./notebooks/04_adventure_weather_assistant/README.md)
+[📖 Full Documentation](projects/04_adventure_weather_assistant/README.md)
 
 ---
 

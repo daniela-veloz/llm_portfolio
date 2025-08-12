@@ -63,7 +63,7 @@ The Adventure Weather Agent is a conversational AI system that helps users disco
 
 ```bash
 git clone <repository-url>
-cd llm_portfolio/notebooks/04_adventure_weather_assistant
+cd llm_portfolio/projects/04_adventure_weather_assistant
 ```
 
 ### 2. Install Dependencies
